@@ -1,0 +1,6 @@
+{
+  "name": "PageNest",
+  "description": "Offline-first native Android PDF reader built with Jetpack Compose & Material 3, featuring local document persistence, horizontal/vertical reading modes, bookmarks, and eye-comfort themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

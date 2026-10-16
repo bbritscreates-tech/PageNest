@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PageNest</string>
+    <string name="import_pdf">Import PDF</string>
+    <string name="recently_read">Recently Read</string>
+    <string name="library">Library</string>
+    <string name="settings">Settings</string>
+    <string name="horizontal_mode">Horizontal Page Flip</string>
+    <string name="vertical_mode">Continuous Vertical Scroll</string>
+    <string name="eye_comfort">Eye Comfort / Sepia</string>
+</resources>
