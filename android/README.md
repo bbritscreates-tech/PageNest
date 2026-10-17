@@ -1,36 +1,85 @@
-# PageNest - Native Android PDF Reader
+# PageNest - Native Android Mobile PDF Reader
 
-PageNest is an offline-first, privacy-focused PDF & document reader built with **Kotlin** and **Jetpack Compose (Material 3)**.
+PageNest is an offline-first, native Android PDF & document reader built with **Kotlin** and **Jetpack Compose (Material 3)**.
 
-## Two PDF Reading Modes + Separate Eye Comfort Architecture
-- **Two PDF Reading Modes Only**:
-  - **Light Mode**: Light reading background and dark text where supported. Ideal for daytime reading.
-  - **Dark Mode**: Dark reading background and light text where supported. Ideal for reading in low-light environments. Preserves diagrams, photos, and scanned content without destructive colour inversion.
-- **Separate Eye Comfort Control**:
-  - Eye Comfort is an independent colour-filter feature that can be enabled or disabled while either Light Mode or Dark Mode is active.
-  - User can toggle Eye Comfort on/off in either mode without switching reading modes.
-  - Blue-light filter intensity slider (0% to 100%): "Adjusts the warmth of the reading display."
-  - In Light Mode, applies warm amber/sepia tint to the page background and content.
-  - In Dark Mode, applies warm amber tint to the dark surface and illuminated text to soften contrast without reducing legibility or causing colour blow-out.
-  - Persisted locally across sessions and document reopens.
-- **Genuine Activity Screen Orientation Control**:
-  - **Portrait**: Requests `ActivityInfo.SCREEN_ORIENTATION_PORTRAIT`. Pages displayed in standard vertical portrait orientation with continuous vertical scroll.
-  - **Landscape**: Requests `ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE`. Uses the wider screen width while preserving continuous vertical scrolling through document pages.
+---
+
+## 🚀 Building into APK for Mobile Install
+
+PageNest includes the full **Gradle Wrapper** (`gradlew`, `gradlew.bat`, `gradle/wrapper/gradle-wrapper.jar`, and `gradle-wrapper.properties`). You do not need to install Gradle manually.
+
+### Prerequisites
+- **JDK 17** (Standard OpenJDK 17 or bundled with Android Studio).
+- Android SDK Platform 34 (API level 26+ minimum supported on devices).
+
+### 1. Build Debug APK via Command Line
+Run one command from the project root:
+
+```bash
+# On macOS or Linux:
+./gradlew assembleDebug
+
+# On Windows (Command Prompt or PowerShell):
+gradlew.bat assembleDebug
+```
+
+The Gradle wrapper will automatically execute using Gradle 8.6, resolve dependencies, compile Kotlin 1.9 and Jetpack Compose assets, and generate the APK.
+
+### 2. Locate the Generated APK
+Once the build completes with `BUILD SUCCESSFUL`, the APK is located at:
+```
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+### 3. Install on your Android Mobile Device
+You can install the APK in either of two ways:
+
+#### Method A: Via USB with ADB
+Connect your phone with USB debugging enabled:
+```bash
+adb install app/build/outputs/apk/debug/app-debug.apk
+```
+
+#### Method B: Direct File Transfer
+1. Copy `app-debug.apk` to your phone via USB cable, Google Drive, or email/messaging.
+2. Open your phone's **Files** or **Downloads** app.
+3. Tap `app-debug.apk` and select **Install** (allow installation from unknown sources if prompted).
+
+---
+
+## 🛠 Opening in Android Studio
+1. Launch **Android Studio (Hedgehog 2023.1.1 or newer)**.
+2. Select **Open** and choose this project root directory.
+3. Gradle will automatically sync using the bundled Gradle 8.6 wrapper.
+4. Select your connected Android phone or emulator in the device selector.
+5. Click **Run** (`Shift + F10`) to build and deploy directly to your device.
+
+---
+
+## 📱 Features & Offline Architecture
+
+- **100% Offline & Private**:
+  - No internet permission (`android.permission.INTERNET` is not requested).
+  - Documents never leave the local device storage.
+  - Fully functional in Airplane Mode.
+
+- **Direct External App Intent Handler**:
+  - Registered for `ACTION_VIEW`, `ACTION_SEND`, and `ACTION_SEND_MULTIPLE` with MIME type `application/pdf`.
+  - Open PDFs directly from Chrome downloads, Gmail attachments, Files app, or the system Share Sheet.
+  - Copies incoming content streams into internal app storage so documents persist offline even after the originating app closes.
+
+- **Two PDF Reading Modes**:
+  - **Light Mode**: Clean daytime reading with optimal contrast.
+  - **Dark Mode**: Dark background with illuminated text without destructive colour inversion on photos and diagrams.
+
+- **Separate Eye Comfort Filter**:
+  - Independent blue-light wavelength attenuation slider (0% to 100%).
+  - Can be toggled on/off in either Light Mode or Dark Mode.
+
+- **Screen Orientation Control**:
+  - Genuine Activity-level **Portrait** and **Landscape** orientation requests (`ActivityInfo.SCREEN_ORIENTATION_*`).
   - Independent of Android system auto-rotate setting.
-  - Restored to `SCREEN_ORIENTATION_UNSPECIFIED` outside the reader.
-- **Continuous Vertical Scrolling**:
-  - Seamless continuous vertical scrolling across all orientations. Scroll position and bookmarks remain rock-solid across rotation.
-- **Independent App Appearance**:
-  - System Default, Light, or Dark for app navigation and dialogs, completely independent from PDF document pages.
-- **In-App Reading Brightness**:
-  - Adjust Activity window brightness (`window.attributes.screenBrightness`) without altering device-wide system settings. Restored upon leaving reader.
+  - Seamless continuous vertical scrolling in both orientations.
 
-## Opening in Android Studio
-1. Launch **Android Studio (Hedgehog or newer)**.
-2. Select **Open** and choose this `android/` directory.
-3. Gradle will sync automatically using Gradle 8.4 and Kotlin 1.9.23.
-4. Connect an Android phone (API 26+) or launch an Android Virtual Device (AVD).
-5. Click **Run** (`Shift + F10`) or execute in terminal:
-   ```bash
-   ./gradlew assembleDebug
-   ```
+- **Saved Progress & Bookmarks**:
+  - Reading page positions, timestamps, and custom bookmarks are persisted locally in Jetpack DataStore across app restarts.

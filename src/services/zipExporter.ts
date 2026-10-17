@@ -1,5 +1,6 @@
 import JSZip from 'jszip';
-import { ANDROID_PROJECT_FILES } from './androidSourceFiles';
+import { ANDROID_PROJECT_FILES, AndroidFile } from './androidSourceFiles';
+import { GRADLE_WRAPPER_JAR_BASE64 } from './gradleWrapperJarBase64';
 
 export async function generateAndroidProjectZip(): Promise<Blob> {
   const zip = new JSZip();
@@ -11,17 +12,19 @@ export async function generateAndroidProjectZip(): Promise<Blob> {
   for (const file of ANDROID_PROJECT_FILES) {
     // Strip leading "android/" if present for clean zip packaging
     const cleanPath = file.path.startsWith('android/') ? file.path.substring(8) : file.path;
-    root.file(cleanPath, file.content);
+    
+    // Mark gradlew shell script as executable (unixPermissions 755)
+    if (cleanPath === 'gradlew') {
+      root.file(cleanPath, file.content, { unixPermissions: '755' });
+    } else {
+      root.file(cleanPath, file.content);
+    }
   }
 
-  // Also include a gradlew wrapper placeholder script for convenience
-  root.file(
-    'gradlew',
-    `#!/bin/sh
-exec gradle "$@"
-`,
-    { unixPermissions: '755' }
-  );
+  // Include binary gradle-wrapper.jar so ./gradlew works immediately without installing Gradle
+  root.file('gradle/wrapper/gradle-wrapper.jar', GRADLE_WRAPPER_JAR_BASE64, {
+    base64: true,
+  });
 
   return await zip.generateAsync({
     type: 'blob',
