@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a62f4"/>
+      <stop offset="60%" stop-color="#0050df"/>
+      <stop offset="100%" stop-color="#003dbd"/>
+    </linearGradient>
+
+    <!-- Nest Layer Gradients -->
+    <linearGradient id="nestDeep" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b40a8"/>
+      <stop offset="100%" stop-color="#042670"/>
+    </linearGradient>
+    <linearGradient id="nestMid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#007dfa"/>
+      <stop offset="100%" stop-color="#005cd6"/>
+    </linearGradient>
+    <linearGradient id="nestLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <!-- Leaf Gradient -->
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34f5d8"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+
+    <!-- Red PDF Badge Gradient -->
+    <linearGradient id="pdfBadge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff334b"/>
+      <stop offset="100%" stop-color="#dc143c"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="nestGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#001850" flood-opacity="0.35"/>
+    </filter>
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#022166" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background App Squircle -->
+  <rect x="0" y="0" width="512" height="512" rx="118" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Inner Border Highlight -->
+  <rect x="2" y="2" width="508" height="508" rx="116" fill="none" stroke="#60a5fa" stroke-width="2" stroke-opacity="0.3"/>
+
+  <!-- Outer Cover / Wings of the Book (Dark Blue Wings) -->
+  <g filter="url(#nestGlow)">
+    <!-- Left outer cover flap -->
+    <path d="M142,106 C140,88 178,82 220,110 L216,236 C182,216 150,214 142,216 Z" fill="#1d4ed8"/>
+    <!-- Right outer cover flap -->
+    <path d="M370,106 C372,88 334,82 292,110 L296,236 C330,216 362,214 370,216 Z" fill="#1e40af"/>
+
+    <!-- Left Book Page (White with subtle fold curve) -->
+    <path d="M158,110 C156,96 186,88 238,112 C246,116 252,122 254,130 L248,244 C244,236 238,232 230,228 C188,206 164,210 158,212 Z" fill="#f8fafc"/>
+    <path d="M236,112 C244,116 250,122 252,128 L246,242 C242,236 236,232 228,228 C206,216 188,214 176,216 L180,108 C198,102 218,106 236,112 Z" fill="#ffffff"/>
+
+    <!-- Right Book Page (White with soft curve) -->
+    <path d="M354,110 C356,96 326,88 274,112 C266,116 260,122 258,130 L264,244 C268,236 274,232 282,228 C324,206 348,210 354,212 Z" fill="#f1f5f9"/>
+    <path d="M276,112 C268,116 262,122 260,128 L266,242 C270,236 276,232 284,228 C306,216 324,214 336,216 L332,108 C314,102 294,106 276,112 Z" fill="#ffffff"/>
+
+    <!-- Center Book Spine Crease -->
+    <path d="M256,126 L256,244" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- PDF Document Icon (Nestled on top of book) -->
+  <g filter="url(#badgeShadow)">
+    <!-- Red Document Base with folded corner -->
+    <path d="M208,124 L276,124 C282,124 288,128 294,134 L308,148 C312,152 314,158 314,164 L314,216 C314,226 306,234 296,234 L226,234 C216,234 208,226 208,216 Z" fill="url(#pdfBadge)"/>
+
+    <!-- Top Right Corner Fold Flap -->
+    <path d="M276,124 L276,146 C276,152 282,158 288,158 L314,158 Z" fill="#b91c1c" opacity="0.85"/>
+    <path d="M276,124 L314,158 L288,158 C282,158 276,152 276,146 Z" fill="#fca5a5" opacity="0.6"/>
+
+    <!-- "PDF" Text on Badge -->
+    <text x="259" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="33" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">PDF</text>
+  </g>
+
+  <!-- Left Green Leaf -->
+  <g filter="url(#nestGlow)">
+    <path d="M128,162 C106,170 82,204 100,234 C120,240 148,222 152,194 C154,180 144,166 128,162 Z" fill="url(#leafGrad)"/>
+    <path d="M100,234 C116,216 130,198 142,176" stroke="#0f766e" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Right Green Leaf -->
+  <g filter="url(#nestGlow)">
+    <path d="M384,162 C406,170 430,204 412,234 C392,240 364,222 360,194 C358,180 368,166 384,162 Z" fill="url(#leafGrad)"/>
+    <path d="M412,234 C396,216 382,198 370,176" stroke="#0f766e" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Layered Nest Bowls (Blue Swoops) -->
+  <g filter="url(#nestGlow)">
+    <!-- Base Deep Blue Swoop -->
+    <path d="M110,250 C146,334 366,334 402,250 C382,346 130,346 110,250 Z" fill="url(#nestDeep)"/>
+
+    <!-- Lower Mid Blue Layer (Branch Curves) -->
+    <path d="M96,220 C120,300 240,332 300,320 C364,308 410,248 418,214 C406,270 354,320 286,326 C214,332 120,296 96,220 Z" fill="#0056cc"/>
+
+    <!-- Main Front Twig Twists (Layer 1) -->
+    <path d="M84,186 C98,248 184,310 278,298 C354,288 412,232 428,188 C416,244 346,298 266,306 C176,314 96,248 84,186 Z" fill="url(#nestMid)"/>
+
+    <!-- Main Front Twig Twists (Layer 2 Highlight) -->
+    <path d="M102,234 C140,286 230,304 316,288 C380,276 414,236 422,216 C406,256 360,288 296,296 C216,306 138,284 102,234 Z" fill="#0284c7"/>
+
+    <!-- Front Cyan Accent Twigs -->
+    <path d="M136,258 C180,290 274,300 348,278 C324,292 254,300 196,294 C162,290 144,278 136,258 Z" fill="url(#nestLight)"/>
+    <path d="M162,284 C210,308 296,308 344,286 C314,300 244,304 192,298 C176,296 166,292 162,284 Z" fill="#38bdf8" opacity="0.8"/>
+  </g>
+
+  <!-- "PageNest" Typography -->
+  <g filter="url(#nestGlow)">
+    <text x="256" y="434" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Montserrat', 'Inter', sans-serif" font-weight="900" font-size="70" letter-spacing="-0.5">
+      <tspan fill="#ffffff">Page</tspan><tspan fill="#22d3ee">Nest</tspan>
+    </text>
+  </g>
+</svg>

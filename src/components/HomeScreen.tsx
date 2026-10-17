@@ -120,11 +120,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         }`}
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-xs">
-            <BookOpen className="w-4 h-4" />
-          </div>
+          <img
+            src="/icon.svg"
+            alt="PageNest Logo"
+            className="w-9 h-9 rounded-xl shadow-xs object-cover"
+          />
           <div>
-            <h1 className="font-bold text-lg tracking-tight leading-none">PageNest</h1>
+            <h1 className="font-bold text-lg tracking-tight leading-none flex items-center">
+              <span>Page</span><span className="text-cyan-500 dark:text-cyan-400">Nest</span>
+            </h1>
             <span className="text-[11px] text-zinc-500 font-medium tracking-tight">Offline Document Reader</span>
           </div>
         </div>

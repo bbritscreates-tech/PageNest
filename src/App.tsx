@@ -327,10 +327,8 @@ export default function App() {
       {/* AI Studio Environment Control Strip */}
       <div className="h-11 px-4 bg-zinc-950 border-b border-zinc-800 flex items-center justify-between text-xs shrink-0 z-40">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-md bg-blue-600 flex items-center justify-center text-white font-bold text-[11px]">
-            P
-          </div>
-          <span className="font-semibold text-zinc-200">PageNest</span>
+          <img src="/icon.svg" alt="PageNest" className="w-5 h-5 rounded-md object-cover shadow-2xs" />
+          <span className="font-bold text-zinc-100 tracking-tight">Page<span className="text-cyan-400">Nest</span></span>
           <span className="text-zinc-500">·</span>
           <span className="text-zinc-400 text-[11px]">Native Android PDF Reader</span>
         </div>

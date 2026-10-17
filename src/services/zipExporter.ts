@@ -1,6 +1,7 @@
 import JSZip from 'jszip';
 import { ANDROID_PROJECT_FILES, AndroidFile } from './androidSourceFiles';
 import { GRADLE_WRAPPER_JAR_BASE64 } from './gradleWrapperJarBase64';
+import { ICON_ASSETS } from './iconAssets';
 
 export async function generateAndroidProjectZip(): Promise<Blob> {
   const zip = new JSZip();
@@ -19,6 +20,11 @@ export async function generateAndroidProjectZip(): Promise<Blob> {
     } else {
       root.file(cleanPath, file.content);
     }
+  }
+
+  // Include binary launcher icons across all mipmap densities
+  for (const [relPath, b64] of Object.entries(ICON_ASSETS)) {
+    root.file(`app/src/main/res/${relPath}`, b64, { base64: true });
   }
 
   // Include binary gradle-wrapper.jar so ./gradlew works immediately without installing Gradle
